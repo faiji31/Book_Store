@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const Books = () => {
-    const [allBooks,SetallBooks]=useState([]);
+const SingleBook = ({ data }) => {
 
-    useEffect(()=>{
-        fetch('https://raw.githubusercontent.com/ProgrammingHero1/boi-poka-Book-Vibe-Resources/refs/heads/main/data/booksData.json').then(res=>res.json()).then(data=>{
-            console.log(data)
-        })
-    })
-    return (
-        <div>
-            <h1>Hello I am books</h1>
+  if (!Array.isArray(data)) {
+    return <p className="text-center text-red-500">Invalid data format!</p>;
+  }
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+      {data.map((book) => (
+        <div 
+          key={book.bookId} book={book}
+          className="border p-4 shadow-md rounded-md"
+        >
+          <h2 className="text-xl font-bold">{book.bookName}</h2>
+          <p className="text-sm text-gray-500">{book.author}</p>
+          <p className="mt-2">{book.category}</p>
+          <p className="mt-2 font-semibold">Rating: {book.rating}</p>
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
-export default Books;
+export default SingleBook;
