@@ -4,9 +4,9 @@ const SingleBook = ({single}) => {
   const {bookName,author,image}= single;
 
   return (
-   <div className="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <img
+   <div className="card bg-white shadow-sm">
+  <figure className='bg-gray-300 rounded p-5 m-5'>
+    <img className='w-[125px] h-[166px] m-10 '
       src={image}
       alt="Shoes" />
   </figure>
