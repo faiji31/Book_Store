@@ -10,17 +10,17 @@ const SingleBook = ({single}) => {
       src={image}
       alt="Shoes" />
   </figure>
-  <div className="card-body">
-    <h2 className="card-title">
-      Card Title
-      <div className="badge badge-secondary">NEW</div>
-    </h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div className="card-actions justify-end">
-      <div className="badge badge-outline">Fashion</div>
-      <div className="badge badge-outline">Products</div>
+  <div className="flex justify-between items-center gap-5 p-5">
+    <button className='btn text-green-400 bg-gray-200 rounded-lg font-bold border-0'>Young Adult</button>
+    <button className='btn  text-green-400 bg-gray-200 rounded-lg font-bold border-0'>Identity</button>
     </div>
-  </div>
+    <div className="m-5 p-5 space-y-2">
+      <h2 className='text-2xl text-black font-bold'>{bookName}</h2>
+      <p className='text-black font-semibold'>By:{author}</p>
+      
+      
+    </div>
+  
 </div>
   );
 };
