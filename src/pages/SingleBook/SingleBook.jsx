@@ -1,11 +1,10 @@
+import React from 'react';
 
+const SingleBook = ({single}) => {
+  const {bookName,author,image}= single;
 
-const SingleBook = ({book}) => {
-    const {bookName,author,image}=book;
-    
-    return (
-       
-        <div className="card bg-base-100 w-96 shadow-sm">
+  return (
+   <div className="card bg-base-100 w-96 shadow-sm">
   <figure>
     <img
       src={image}
@@ -23,7 +22,7 @@ const SingleBook = ({book}) => {
     </div>
   </div>
 </div>
-    );
+  );
 };
 
 export default SingleBook;
