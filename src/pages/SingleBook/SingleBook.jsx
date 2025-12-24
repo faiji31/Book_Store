@@ -3,7 +3,7 @@ import { FaRegStar } from "react-icons/fa";
 import { Link } from 'react-router';
 
 const SingleBook = ({single}) => {
-  const {bookName,author,image,rating,category,bookId}= single;
+  const {bookName,author,image,rating,category,bookId,tags}= single;
 
   return (
    <Link to={`/bookDetails/${bookId}`}>
@@ -14,6 +14,11 @@ const SingleBook = ({single}) => {
       src={image}
       alt="Shoes" />
   </figure>
+ <div className='flex text-black justify-center font-bold gap-5'>
+   {
+    tags.map((tag=><button>{tag}</button>))
+  }
+ </div>
   <div className="flex justify-between items-center gap-5 p-5">
     <button className='btn text-green-400 bg-gray-200 rounded-lg font-bold border-0'>Young Adult</button>
     <button className='btn  text-green-400 bg-gray-200 rounded-lg font-bold border-0'>Identity</button>
