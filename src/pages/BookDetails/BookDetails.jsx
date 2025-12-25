@@ -2,22 +2,51 @@ import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 
 const BookDetails = () => {
-    const {id} = useParams();
+    const { id } = useParams();
     const data = useLoaderData();
-    const bookId=parseInt(id)
-    const singleBook =data.find(book=>book.bookId===bookId);
-   const {bookName,image,author,yearofPublishing,rating,category}=singleBook;
+    const bookId = parseInt(id);
+    
+    // Optional: Add a check to ensure data exists before finding
+    const singleBook = data?.find(book => book.bookId === bookId);
+
+    if (!singleBook) {
+        return <div className="text-center p-10">Book not found</div>;
+    }
+
+    const { bookName, image, author, rating, category } = singleBook;
+
     return (
-        <div className='flex justify-around p-10'>
-           <div className='bg-gray-300 p-20 rounded'>
-             <img className='size-140 w-auto' src={image} alt="" />
-           </div>
-            <div className='bg-gray-300 items-center p-20 w-[600px] rounded'>
-                <h2 className='text-black text-6xl font-bold'>{bookName}</h2>
-                <div className=' '>
-                    <p className='text-black text-1xl mt-5  font-bold'>Author Name: {author}</p>
-                    <p className='text-black '>Category: {category}</p>
-                       <p className='text-black '>Rating: {rating}</p>
+        /* 1. Changed 'flex' to 'flex-col' for mobile, 'lg:flex-row' for desktop.
+           2. Added 'gap-8' for spacing between elements.
+        */
+        <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8 p-5 md:p-10'>
+            
+            {/* Image Container: Full width on mobile, auto on desktop */}
+            <div className='bg-gray-200 p-10 md:p-20 rounded-2xl w-full lg:w-1/2 flex justify-center'>
+                <img 
+                    className='max-h-[500px] w-auto object-contain shadow-lg' 
+                    src={image} 
+                    alt={bookName} 
+                />
+            </div>
+
+            {/* Content Container: Adjusted width and text alignment */}
+            <div className='w-full lg:w-1/2 flex flex-col justify-center'>
+                <h2 className='text-white text-3xl md:text-5xl lg:text-6xl font-bold'>
+                    {bookName}
+                </h2>
+                
+                <div className='mt-4 space-y-3'>
+                    <p className='text-white-700 text-xl font-semibold'>By: {author}</p>
+                    <hr className='border-white-300' />
+                    <p className='text-white-600 text-lg'><span className='font-bold'>Category:</span> {category}</p>
+                    <hr className='border-gray-300' />
+                    <p className='text-white-600 text-lg'><span className='font-bold'>Rating:</span> {rating} / 5</p>
+                    
+                    <div className='pt-5 flex gap-4'>
+                        <button className='btn btn-outline btn-info px-8'>Read</button>
+                        <button className='btn btn-accent px-8'>Wishlist</button>
+                    </div>
                 </div>
             </div>
             
