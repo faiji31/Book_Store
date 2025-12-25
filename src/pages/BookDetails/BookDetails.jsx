@@ -1,12 +1,18 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { addtostoredDB } from '../../utility/addtoDB';
+
+const handleMarkasRead =id=>{
+    addtostoredDB(id);
+
+}
 
 const BookDetails = () => {
     const { id } = useParams();
     const data = useLoaderData();
     const bookId = parseInt(id);
     
-    // Optional: Add a check to ensure data exists before finding
+    
     const singleBook = data?.find(book => book.bookId === bookId);
 
     if (!singleBook) {
@@ -16,12 +22,10 @@ const BookDetails = () => {
     const { bookName, image, author, rating, category } = singleBook;
 
     return (
-        /* 1. Changed 'flex' to 'flex-col' for mobile, 'lg:flex-row' for desktop.
-           2. Added 'gap-8' for spacing between elements.
-        */
+       
         <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start gap-8 p-5 md:p-10'>
             
-            {/* Image Container: Full width on mobile, auto on desktop */}
+           
             <div className='bg-gray-200 p-10 md:p-20 rounded-2xl w-full lg:w-1/2 flex justify-center'>
                 <img 
                     className='max-h-[500px] w-auto object-contain shadow-lg' 
@@ -44,8 +48,8 @@ const BookDetails = () => {
                     <p className='text-white-600 text-lg'><span className='font-bold'>Rating:</span> {rating} / 5</p>
                     
                     <div className='pt-5 flex gap-4'>
-                        <button className='btn btn-outline btn-info px-8'>Read</button>
-                        <button className='btn btn-accent px-8'>Wishlist</button>
+                        <button onClick={()=>handleMarkasRead(id)} className='btn btn-outline btn-info px-8'>Mark as Read</button>
+                        <button className='btn btn-accent px-8'>Add to Wishlist</button>
                     </div>
                 </div>
             </div>
