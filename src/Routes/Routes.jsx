@@ -1,33 +1,43 @@
-import React from 'react';
+import React from "react";
 import { createBrowserRouter } from "react-router";
-import Root from '../pages/Root/Root';
-import ErrorPage from '../pages/ErrorPage/ErrorPage';
-import Home from '../pages/Home/Home';
-import ABout from '../pages/About/ABout';
-import BookDetails from '../pages/BookDetails/BookDetails';
+import Root from "../pages/Root/Root";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Home from "../pages/Home/Home";
+import ABout from "../pages/About/ABout";
+import BookDetails from "../pages/BookDetails/BookDetails";
+import ReadList from "../components/ReadList/ReadList";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:Root,
-    errorElement:<ErrorPage></ErrorPage>,
-    children:[
+    Component: Root,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
       {
-          index: true,
-          loader:()=>fetch('https://raw.githubusercontent.com/ProgrammingHero1/boi-poka-Book-Vibe-Resources/refs/heads/main/data/booksData.json').then(res=>res.json()),
-          path:'/',
-          Component:Home
+        index: true,
+        loader: () =>
+          fetch(
+            "https://raw.githubusercontent.com/ProgrammingHero1/boi-poka-Book-Vibe-Resources/refs/heads/main/data/booksData.json"
+          ).then((res) => res.json()),
+        path: "/",
+        Component: Home,
       },
       {
-        path:'/about',
-        Component: ABout
+        path: "/about",
+        Component: ABout,
       },
       {
-        path:'/bookDetails/:id',
-         loader:()=>fetch('https://raw.githubusercontent.com/ProgrammingHero1/boi-poka-Book-Vibe-Resources/refs/heads/main/data/booksData.json').then(res=>res.json()),
-        Component:BookDetails
-      }
-    ]
+        path: "readList",
+        Component: ReadList,
+      },
+      {
+        path: "/bookDetails/:id",
+        loader: () =>
+          fetch(
+            "https://raw.githubusercontent.com/ProgrammingHero1/boi-poka-Book-Vibe-Resources/refs/heads/main/data/booksData.json"
+          ).then((res) => res.json()),
+        Component: BookDetails,
+      },
+    ],
   },
 ]);
-
