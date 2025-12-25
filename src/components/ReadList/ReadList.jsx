@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { getStoredbook } from "../../utility/addtoDB";
 
-
+import SingleBook from "../../pages/SingleBook/SingleBook";
 
 const ReadList = () => {
       const [readList,setReadList]=useState([]);
@@ -27,6 +27,9 @@ const ReadList = () => {
 
         <TabPanel>
           <h2>Book I Read {readList.length}</h2>
+          {
+            readList.map(b=><SingleBook key={b.bookId} single={b}></SingleBook>)
+          }
         </TabPanel>
         <TabPanel>
           <h2>My Wish List</h2>
