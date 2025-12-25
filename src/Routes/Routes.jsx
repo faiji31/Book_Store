@@ -27,7 +27,11 @@ export const router = createBrowserRouter([
         Component: ABout,
       },
       {
-        path: "readList",
+        path: "readList",loader: () =>
+          fetch(
+            "https://raw.githubusercontent.com/ProgrammingHero1/boi-poka-Book-Vibe-Resources/refs/heads/main/data/booksData.json"
+          ).then((res) => res.json()),
+
         Component: ReadList,
       },
       {
